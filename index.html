@@ -10,6 +10,25 @@
     <title>Exercise 2 - Internet Programming Course template 2</title>
 </head>
 <body>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // FIRST SOLUTION
+        document.getElementById("high").addEventListener('click', function() {
+            // the table can be selected in many ways, for example
+            // document.getElementById("mytable")
+            // or using getElementsByTagName that returns an array of all table tags
+            document.getElementsByTagName("table")[0].classList.add("table-dark");
+        });
+        document.getElementById("sort").addEventListener('click', function() {
+            document.getElementsByTagName("table")[0].classList.remove("table-dark");
+        });
+
+    });
+
+
+</script>
 <div class="container-fluid">
     <div class="text-center">
         <img src="images/todo.jpg" alt="Picture" style="width: 600px; height: 250px;" class="img-fluid"></br>
@@ -23,18 +42,33 @@
             </div>
         </div>
     </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8"><label for="textbox">Title</label>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8"><label for="textbox">Title</label>
             <input style="width: 100%" type="text" name="textbox" id="textbox"></div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8"><label for="Description">Description</label></br>
+            <input style="width: 100%" type="text" name="Description" id="Description">
         </div>
-                <label for="Description">Description</label><br>
-                <input name="Description" id="Description"><br><br>
-                <input type="checkbox" name="checkme" id="checkme">
-                <label for="checkme">High Priority</label><br><br>
-                <button id="add" class="btn btn-danger">Add</button>
-
-
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <input type="checkbox" name="checkme" id="checkme">
+            <label for="checkme">High Priority</label>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <button id="add" class="btn btn-danger">Add</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
