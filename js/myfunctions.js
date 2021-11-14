@@ -20,10 +20,10 @@ submit.addEventListener('click', function () {
     let deleteButtons = document.getElementsByClassName("deleteButton");
     for (let but of deleteButtons)
         but.addEventListener('click', function (event) {
-            const index = taskList.findIndex(ele => ele.title == this.parentElement.firstElementChild.innerHTML)
+            const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
             //console.log(index)
             //console.log(event.target.parentElement.firstElementChild.innerHTML);
-            this.parentElement.remove();
+            event.target.parentElement.remove();
             taskList.splice(index,1);
             //console.log(listOfTasksJS)
         } );
@@ -32,18 +32,29 @@ submit.addEventListener('click', function () {
 function printList()
     {
         let htmlList = document.getElementById('taskstoddo');
-        htmlList.innerHTML = "<div id = 'taskstoddo'>";
+        htmlList.innerHTML = "<ol id = 'taskstoddo'>";
         for(let task of taskList)
             {
                 htmlList.innerHTML+= printTask(task);
             }
-        htmlList.innerHTML +="</div>";
+        htmlList +="</ol>";
         console.log(htmlList);
+        let color = document.getElementsByTagName('li')
+        for( let c of color)
+        {
+            for(let p of taskList) {
+                if (p.title == c.firstElementChild.innerHTML)
+                    //const index = taskList.findIndex(el => el.title == c.firstElementChild.innerHTML);
+                    console.log(c.firstElementChild.innerHTML);
+
+
+                    }
+        }
     }
 function printTask(t) {
-    let ret = "<h3>" + t.title + "</h3>";
+    let ret = "<li><h3>" + t.title + "</h3>";
     ret += "<h4> " +t.description + "</h4>";
-    ret +=  "<button class = 'deleteButton'>delete</button> ";
+    ret +=  "<button class = 'deleteButton bg-warning text-dark'>delete</button> ";
     return ret;
 }
 
