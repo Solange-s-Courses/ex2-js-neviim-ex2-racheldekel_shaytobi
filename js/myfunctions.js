@@ -6,66 +6,68 @@ class Task {
     }
 }
 
-const submit = document.getElementById("add");
+const submitTask = document.getElementById("add");
 let taskList = [];
-submit.addEventListener('click', function () {
+
+submitTask.addEventListener('click', function () {
     const titleName = document.getElementById("textbox").value;
     const titleDesc = document.getElementById("Description").value;
     const isPriority = document.getElementById("checkme").checked;
     console.log(isPriority);
-    //check
+    //check for empty str and other checks
     let newTask = new Task(titleName, titleDesc, isPriority);
     taskList.push(newTask);
+    /* console.log(taskList);*/
     printList();
     let deleteButtons = document.getElementsByClassName("deleteButton");
-    for (let but of deleteButtons)
-        but.addEventListener('click', function (event) {
+
+    for (let button of deleteButtons)
+        button.addEventListener('click', function (event) {
             const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
-            //console.log(index)
-            //console.log(event.target.parentElement.firstElementChild.innerHTML);
             event.target.parentElement.remove();
-            taskList.splice(index,1);
-            //console.log(listOfTasksJS)
-        } );
-
+            taskList.splice(index, 1);
+        });
 })
-function printList()
-    {
-        let htmlList = document.getElementById('taskstoddo');
-        htmlList.innerHTML = "<ol id = 'taskstoddo'>";
-        for(let task of taskList)
-            {
-                htmlList.innerHTML+= printTask(task);
-            }
-        htmlList +="</ol>";
-        console.log(htmlList);
-        let color = document.getElementsByTagName('li')
-        for( let c of color)
-        {
-            for(let p of taskList) {
-                if (p.title == c.firstElementChild.innerHTML)
-                    //const index = taskList.findIndex(el => el.title == c.firstElementChild.innerHTML);
-                    console.log(c.firstElementChild.innerHTML);
 
-
-                    }
-        }
+function printList() {
+    let htmlList = document.getElementById('tasksToDo');
+    htmlList.innerHTML = "<ol id = 'tasksToDo'>";
+    for (let task of taskList) {
+        htmlList.innerHTML += printTask(task);
     }
+    htmlList += "</ol>";
+}
+
 function printTask(t) {
-    let ret = "<li><h3>" + t.title + "</h3>";
-    ret += "<h4> " +t.description + "</h4>";
-    ret +=  "<button class = 'deleteButton bg-warning text-dark'>delete</button> ";
+
+    let ret = '';
+    if (t.priority == 'true') {
+        ret += "<div class='col-8 bg-warning'>";
+    } else
+        ret += "<div class='col-8 not-priority p-3 mb-2 bg-info text-dark'>";
+    ret += "<li><h3><strong>" + t.title + "</strong></h3><br><h4>" +
+        t.description + "</h4></li>";
+    ret += "<button class = 'deleteButton .bg-light.bg-gradient text-dark'>delete</button>";
+    ret += "</div>";  
     return ret;
 }
 
-    //clear textbox
-    //print task
-
-
-function deleteTask(event) {
-
-    event.target.parentElement.remove();
+function sortList() {
+    taskList.sort((a, b) => a.title.localeCompare(b.title));
+    printList();
 }
+
+function showPriority() {
+    const notPriorityList = document.getElementsByClassName("not-priority");
+    for (let t of notPriorityList) {
+        t.classList.toggle('d-none');
+    }
+}
+
+//clear textbox
+//print task
+
+/*
 
 /*function errorMessage(msg) {
     document.getElementById("errormsg").innerHTML = msg;
