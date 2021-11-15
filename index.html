@@ -29,7 +29,7 @@
 
 </script>
 <div class="container-fluid">
-    <div style="background-image: url('images/background.jpg');
+    <div style="background-image: url('images/background.png');
     height: 100vh;">
         <div class="text-center">
             <img src="images/todo.png" alt="Picture" style="width: 600px; height: 250px;" class="img-fluid"><br>
@@ -39,40 +39,51 @@
                     <div class="col">
                         <button id="high" class="btn btn-danger" onclick="showPriority()">Show High Priority</button>
                         <button id="sort" class="btn btn-danger" onclick="sortList()">Sort</button>
+                        </button>
                         <br><br>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="inputSection">
             <div class="col-2"></div>
             <div class="col-8">
                 <label for="textbox">Title</label>
                 <input style="width: 100%" type="text" name="textbox" id="textbox" value="">
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8"><label for="Description">Description</label><br>
-                <input style="width: 100%" type="text" name="Description" id="Description">
+            <!-- </div>-->
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8"><label for="Description">Description</label><br>
+                    <input style="width: 100%" type="text" name="Description" id="Description">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <input type="checkbox" name="checkme" id="checkme">
+                    <label for="checkme">High Priority</label>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <button id="add" class="btn btn-danger">Add</button>
+                </div>
             </div>
         </div>
-        <br>
+
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-                <input type="checkbox" name="checkme" id="checkme">
-                <label for="checkme">High Priority</label>
+                <button type="button" id="back" style="display:none"
+                class="btn btn-light btn-outline-secondary fw-bold">Back </button>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <button id="add" class="btn btn-danger">Add</button>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">

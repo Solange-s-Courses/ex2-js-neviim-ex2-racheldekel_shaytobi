@@ -10,23 +10,23 @@ const submitTask = document.getElementById("add");
 let taskList = [];
 
 submitTask.addEventListener('click', function () {
-    const titleName = document.getElementById("textbox").value;
-    const titleDesc = document.getElementById("Description").value;
+    const titleName = document.getElementById("textbox").value.trim();
+    const titleDesc = document.getElementById("Description").value.trim();
     const isPriority = document.getElementById("checkme").checked;
-    console.log(isPriority);
-    //check for empty str and other checks
-    let newTask = new Task(titleName, titleDesc, isPriority);
-    taskList.push(newTask);
-    /* console.log(taskList);*/
-    printList();
-    let deleteButtons = document.getElementsByClassName("deleteButton");
+    //if(validInput(titleName, titleDesc))
+        //check for empty str and other checks
+        let newTask = new Task(titleName, titleDesc, isPriority);
+        taskList.push(newTask);
+        /* console.log(taskList);*/
+        printList();
+        let deleteButtons = document.getElementsByClassName("deleteButton");
 
-    for (let button of deleteButtons)
-        button.addEventListener('click', function (event) {
-            const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
-            event.target.parentElement.remove();
-            taskList.splice(index, 1);
-        });
+        for (let button of deleteButtons)
+            button.addEventListener('click', function (event) {
+                const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
+                event.target.parentElement.remove();
+                taskList.splice(index, 1);
+            })
 })
 
 function printList() {
@@ -41,14 +41,11 @@ function printList() {
 function printTask(t) {
 
     let ret = '';
-    if (t.priority == 'true') {
-        ret += "<div class='col-8 bg-warning'>";
-    } else
-        ret += "<div class='col-8 not-priority p-3 mb-2 bg-info text-dark'>";
+    t.priority ? ret += "<div class='col-8 bg-warning'>" : ret += "<div class='col-8 not-priority bg-info'>";
     ret += "<li><h3><strong>" + t.title + "</strong></h3><br><h4>" +
         t.description + "</h4></li>";
     ret += "<button class = 'deleteButton .bg-light.bg-gradient text-dark'>delete</button>";
-    ret += "</div>";  
+    ret += "</div>";
     return ret;
 }
 
@@ -62,14 +59,27 @@ function showPriority() {
     for (let t of notPriorityList) {
         t.classList.toggle('d-none');
     }
+    document.getElementById("back").classList.toggle('d-none');
 }
 
-//clear textbox
-//print task
+window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("high").addEventListener('click', hidden);
+        document.getElementById("back").addEventListener('click', hidden);
+})
 
-/*
+function hidden() {
 
-/*function errorMessage(msg) {
+    document.getElementById("high").classList.toggle('d-none');
+    document.getElementById("sort").classList.toggle('d-none');
+    document.getElementById("back").classList.toggle('d-none');
+    document.getElementById("inputSection").classList.toggle('d-none');
+
+    let list = document.getElementById("tasksToDo").//clear textbox
+    getElementsByClassName("bg-light");//print task
+
+    for(let item of list)
+        item.classList.toggle('d-none');
+}/*function errorMessage(msg) {
     document.getElementById("errormsg").innerHTML = msg;
     document.getElementById("errormsg").style.display = "block";
 }
