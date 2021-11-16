@@ -9,8 +9,6 @@ class Task {
 const taskList = [];
 
 function newTask() {
-    /*const submitTask = document.getElementById("add");
-    submitTask.addEventListener('click', function () {*/
     const titleName = document.getElementById("Title").value.trim();
     const titleDesc = document.getElementById("Description").value.trim();
 
@@ -18,11 +16,21 @@ function newTask() {
     if (errorMsg.length === 0) {
         let newTask = new Task(titleName, titleDesc, document.getElementById("checkme").checked);
         taskList.push(newTask);
-        //document.getElementById("input").reset();
+        document.getElementById("Title").value = "";
+        document.getElementById("Description").value = "";
+
     }
     document.getElementById("Error-messages").innerText = errorMsg.join(', ');
     if (taskList)
         printList();
+
+    let deleteButtons = document.getElementsByClassName("deleteButton");
+    for (let button of deleteButtons)
+        button.addEventListener('click', function (event) {
+            const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
+            event.target.parentElement.remove();
+            taskList.splice(index, 1);
+        });
 }
 
 function validInput(title, description) {
@@ -40,13 +48,6 @@ function validInput(title, description) {
     return messages;
 }
 
-let deleteButtons = document.getElementsByClassName("deleteButton");
-for (let button of deleteButtons)
-    button.addEventListener('click', function (event) {
-        const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
-        event.target.parentElement.remove();
-        taskList.splice(index, 1);
-    });
 
 
 function printList() {
@@ -85,15 +86,15 @@ function showPriority() {
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("add").addEventListener('click', newTask);
     document.getElementById("high").addEventListener('click', hidden);
-    document.getElementById("back").addEventListener('click', hidden);
 })
 
 function hidden() {
-
-    document.getElementById("high").classList.toggle('d-none');
     document.getElementById("sort").classList.toggle('d-none');
-    document.getElementById("back").classList.toggle('d-none');
     document.getElementById("inputSection").classList.toggle('d-none');
+    if( document.getElementById("high").innerText != "back")
+        document.getElementById("high").innerText = "back";
+    else
+        document.getElementById("high").innerText = "Show High Priority";
 
     let list = document.getElementById("tasksToDo").//clear textbox
         getElementsByClassName("bg-light");//print task
