@@ -6,34 +6,48 @@ class Task {
     }
 }
 
-let taskList = [];
+const taskList = [];
 
-const submitTask = document.getElementById("add");
-submitTask.addEventListener('click', function () {
-        const titleName = document.getElementById("textbox").value.trim();
-        const titleDesc = document.getElementById("Description").value.trim();
-        const isPriority = document.getElementById("checkme").checked;
+function newTask() {
+    /*const submitTask = document.getElementById("add");
+    submitTask.addEventListener('click', function () {*/
+    const titleName = document.getElementById("Title").value.trim();
+    const titleDesc = document.getElementById("Description").value.trim();
 
-        if (validInput(titleName, titleDesc).length === 0) {
-            //check for empty str and other checks
-            let newTask = new Task(titleName, titleDesc, isPriority);
-            taskList.push(newTask);
-            //document.getElementById("inputSection").reset();
-        }
-       // document.getElementById("Error-messages").innerText = validInput(titleName, titleDesc).join(', ');
-
-        if (taskList)
-            printList();
-        let deleteButtons = document.getElementsByClassName("deleteButton");
-
-        for (let button of deleteButtons)
-            button.addEventListener('click', function (event) {
-                const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
-                event.target.parentElement.remove();
-                taskList.splice(index, 1);
-            })
+    let errorMsg = validInput(titleName, titleDesc);
+    if (errorMsg.length === 0) {
+        let newTask = new Task(titleName, titleDesc, document.getElementById("checkme").checked);
+        taskList.push(newTask);
+        //document.getElementById("input").reset();
     }
-)
+    document.getElementById("Error-messages").innerText = errorMsg.join(', ');
+    if (taskList)
+        printList();
+}
+
+function validInput(title, description) {
+    const messages = [];
+    if (title === '' || title == null)
+        messages.push("You must give title");
+
+    else if (description === '' || description == null)
+        messages.push("You must give description");
+
+    for (let item of taskList)
+        if (title === item.title)
+            messages.push("This task already exists");
+
+    return messages;
+}
+
+let deleteButtons = document.getElementsByClassName("deleteButton");
+for (let button of deleteButtons)
+    button.addEventListener('click', function (event) {
+        const index = taskList.findIndex(ele => ele.title == event.target.parentElement.firstElementChild.innerHTML)
+        event.target.parentElement.remove();
+        taskList.splice(index, 1);
+    });
+
 
 function printList() {
     let htmlList = document.getElementById('tasksToDo');
@@ -69,6 +83,7 @@ function showPriority() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("add").addEventListener('click', newTask);
     document.getElementById("high").addEventListener('click', hidden);
     document.getElementById("back").addEventListener('click', hidden);
 })
@@ -85,21 +100,4 @@ function hidden() {
 
     for (let item of list)
         item.classList.toggle('d-none');
-}
-
-function validInput(title, description) {
-    let messages = [];
-    if (title === '' || title == null) {
-        messages.push("You must give title");
-
-    }
-    if (description === '' || description == null) {
-        messages.push("You must give description");
-    }
-
-    for (let item of taskList)
-        if (title === item.title)
-            messages.push("This task already exists");
-
-    return messages;
 }
