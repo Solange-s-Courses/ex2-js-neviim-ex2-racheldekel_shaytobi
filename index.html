@@ -11,22 +11,6 @@
 <body>
 <script>
 
-    //document.addEventListener("DOMContentLoaded", function() {
-
-    // FIRST SOLUTION
-    //  document.getElementById("high").addEventListener('click', function() {
-    // the table can be selected in many ways, for example
-    // document.getElementById("mytable")
-    // or using getElementsByTagName that returns an array of all table tags
-    //        document.getElementsByTagName("table")[0].classList.add("table-dark");
-    //    });
-    //   document.getElementById("sort").addEventListener('click', function() {
-    //       document.getElementsByTagName("table")[0].classList.remove("table-dark");
-    //   });
-
-    //  });
-
-
 </script>
 <div class="container-fluid">
     <div style="background-image: url('images/background.png');
@@ -49,17 +33,22 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <label for="textbox">Title</label>
-                <input style="width: 100%" type="text" name="textbox" id="textbox" value="">
+                <input style="width: 100%" type="text" name="textbox" id="textbox"
+                       placeholder="Type your title here">
             </div>
-            <!-- </div>-->
             <br>
+            <div class="row"><br></div>
             <div class="row">
                 <div class="col-2"></div>
-                <div class="col-8"><label for="Description">Description</label><br>
-                    <input style="width: 100%" type="text" name="Description" id="Description">
+                <div class="col-8">
+                    <label for="Description">Description</label><br>
+                    <input style="width: 100%" type="text" name="Description" id="Description"
+                           placeholder="Type your task description here">
                 </div>
             </div>
+            <label id="Error-messages"></label>
             <br>
+            <div class="row"><br></div>
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
@@ -68,6 +57,7 @@
                 </div>
             </div>
             <br>
+            <div class="row"><br></div>
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
@@ -80,7 +70,8 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <button type="button" id="back" style="display:none"
-                class="btn btn-light btn-outline-secondary fw-bold">Back </button>
+                        class="btn btn-light btn-outline-secondary fw-bold">Back
+                </button>
             </div>
         </div>
 
