@@ -2,9 +2,9 @@
 # ex2-template
 A started template for JS project
 
-<h1>Your Name(s) Here</h1>
-<p>Email: student@edu.hac.ac.il</p>
-
+<h1>Your Shay Tobi and Rachel Dekel Here</h1>
+<p>Email: shaindelle@edu.hac.ac.il</p>
+<p>Email: rachelde@edu.hac.ac.il</p>
 <h1>Execution</h1>
 <p>
 The submission is a WebStorm project that can be run directly from the IDE.

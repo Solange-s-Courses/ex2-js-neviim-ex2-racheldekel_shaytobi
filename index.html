@@ -12,19 +12,17 @@
 <script>
 
 </script>
-<div class="container-fluid">
-    <div style="background-image: url('images/background.png');
-    height: 100vh;">
+<div style="background-image: url('images/background.png'); background-repeat: repeat-x; height: 100vh;">
+    <div class="container-fluid">
         <div class="text-center">
             <img src="images/todo.png" alt="Picture" style="width: 600px; height: 250px;" class="img-fluid"><br>
             <div class="row"><h1>My TODO List</h1>
                 <br>
                 <div class="row">
                     <div class="col">
-                        <button id="high" class="btn btn-danger" onclick="showPriority()">Show High Priority</button>
-                        <button id="sort" class="btn btn-danger" onclick="sortList()">Sort</button>
-                        </button>
-                        <br><br>
+                        <button id="high" class="btn btn-danger">Show High Priority</button>
+                        <button id="sort" class="btn btn-danger">Sort</button>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -32,50 +30,42 @@
         <div class="row" id="inputSection">
             <div class="col-2"></div>
             <div class="col-8">
-                <label for="Title">Title</label>
-                <input style="width: 100%" type="text" name="textbox" id="Title"
-                       placeholder="Type your title here">
-            </div>
-            <br>
-            <div class="row"><br></div>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <label for="Description">Description</label><br>
-                    <input style="width: 100%" type="text" name="Description" id="Description"
-                           placeholder="Type your task description here">
+                <div>
+                    <label for="Title">Title</label>
+                    <br>
+                    <input class="form-control" type="text" name="textbox" id="Title"
+                           placeholder="Type your title here">
+                    <br>
+                    <div>
+                        <label for="Description">Description</label>
+                        <br>
+                        <textarea class="form-control" type="text" name="Description" id="Description"
+                                  placeholder="Type your task description here"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <strong> <label class="bg-danger" id="Error-messages"></label></strong></div>
+                    <div>
+                        <input type="checkbox" name="checkme" id="checkme">
+                        <label for="checkme">High Priority</label>
+                        <br>
+                        <br>
+                    </div>
+                    <div>
+                        <button id="add" class="btn btn-danger">Add</button>
+                        <br>
+                        <br>
+                    </div>
                 </div>
             </div>
-            <div class="text-center">
-                <label class="bg-danger" id="Error-messages"></label></div>
-            <br>
-            <div class="row"><br></div>
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
-                    <input type="checkbox" name="checkme" id="checkme">
-                    <label for="checkme">High Priority</label>
-                </div>
-            </div>
-            <br>
-            <div class="row"><br></div>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <button id="add" class="btn btn-danger">Add</button>
+                    <button type="button" id="back" style="display:none"
+                            class="btn btn-light btn-outline-secondary fw-bold">Back
+                    </button>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <button type="button" id="back" style="display:none"
-                        class="btn btn-light btn-outline-secondary fw-bold">Back
-                </button>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
